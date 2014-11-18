@@ -21,6 +21,7 @@ class GraphWidget: UIView {
     override init(frame: CGRect) {
      super.init(frame: frame)
         self.graphView = GraphView(frame: CGRectMake(0, GraphWidget_top_height, frame.size.width, frame.size.height-GraphWidget_top_height))
+        self.graphView.backgroundColor = MAIN_BG_COLOR
         
         prevButton = UIButton(frame: CGRectMake(0, 0, GraphWidget_top_button_width, GraphWidget_top_height))
         prevButton.setTitle("<-", forState: UIControlState.Normal)

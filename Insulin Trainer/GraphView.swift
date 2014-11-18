@@ -94,29 +94,58 @@ class GraphView: UIView {
     
     override func drawRect(rect: CGRect) {
         let ctx = UIGraphicsGetCurrentContext()
-        CGContextSetRGBStrokeColor(ctx, 1.0, 0.0, 0.0, 1.0)
-        CGContextSetLineWidth(ctx, 0.75)
-        var xOff: CGFloat = graph_left_margin
-        CGContextMoveToPoint(ctx, xOff, 0)
-        for datum in self.currentRenderData {
-            var date = datum.time
-            var bs = CGFloat(datum.values[0].toInt()!)
-            CGContextAddLineToPoint(ctx, xOff, self.bounds.size.height*(bs/200))
-            xOff += 5
+        let textFontAttributes = [
+            NSFontAttributeName: UIFont.systemFontOfSize(11),
+            NSForegroundColorAttributeName: UIColor.whiteColor()
+        ]
+        var adjustedGraphHeight = self.bounds.size.height - graph_bottom_margin
+        var adjustedGraphWidth = self.bounds.size.width - graph_left_margin
+        
+        func drawBackground() {
+            CGContextSetFillColorWithColor(ctx, UIColor.blackColor().CGColor)
+            CGContextMoveToPoint(ctx, graph_left_margin, 0)
+            CGContextAddLineToPoint(ctx, self.bounds.size.width, 0)
+            CGContextAddLineToPoint(ctx, self.bounds.size.width, adjustedGraphHeight)
+            CGContextAddLineToPoint(ctx, graph_left_margin, adjustedGraphHeight)
+            CGContextClosePath(ctx)
+            CGContextFillPath(ctx)
         }
         
-        for (index, label) in enumerate(self.verticalTicks) {
-            var tickSpace = self.bounds.size.height/CGFloat(self.verticalTicks.count)
-            var tickY = self.bounds.size.height - CGFloat(index)*(tickSpace)
-            CGContextMoveToPoint(ctx, graph_left_margin - graph_tick_size, tickY)
-            CGContextAddLineToPoint(ctx, graph_left_margin, tickY)
+        func drawData() {
+            CGContextSetRGBStrokeColor(ctx, 1.0, 0.0, 0.0, 1.0)
+            CGContextSetLineWidth(ctx, 0.75)
+            var xOff: CGFloat = graph_left_margin
+            CGContextMoveToPoint(ctx, xOff, 0)
+            for datum in self.currentRenderData {
+                var date = datum.time
+                var bs = CGFloat(datum.values[0].toInt()!)
+                var datumLineHeight = (bs/CGFloat(blood_sugar_max) - CGFloat(blood_sugar_min)/CGFloat(blood_sugar_max))*adjustedGraphHeight
+                CGContextAddLineToPoint(ctx, xOff, adjustedGraphHeight - datumLineHeight)
+                xOff += 5
+            }
+            CGContextStrokePath(ctx)
         }
         
-        CGContextStrokePath(ctx)
+        func drawLeftTicks() {
+            for (index, label) in enumerate(self.verticalTicks) {
+                var tickSpace = adjustedGraphHeight/CGFloat(self.verticalTicks.count)
+                var tickY = adjustedGraphHeight - CGFloat(index)*(tickSpace)
+                CGContextSetRGBStrokeColor(ctx, 1.0, 0.0, 0.0, 1.0)
+                CGContextSetLineWidth(ctx, 0.75)
+                CGContextMoveToPoint(ctx, graph_left_margin - graph_tick_size, tickY)
+                CGContextAddLineToPoint(ctx, graph_left_margin, tickY)
+                CGContextStrokePath(ctx)
+                
+                CGContextSetFillColorWithColor(ctx, UIColor.redColor().CGColor)
+                var string: NSString = NSString(string: label)
+                var stringBounds = string.sizeWithAttributes(textFontAttributes)
+                string.drawInRect(CGRectMake(0, tickY - stringBounds.height, graph_left_margin, tickSpace), withAttributes: textFontAttributes)
+            }
+        }
         
-        self.backgroundColor = UIColor.blackColor()
-        
-        super.drawRect(rect)
+        drawBackground()
+        drawData()
+        drawLeftTicks()
     }
 
     required init(coder aDecoder: NSCoder) {
