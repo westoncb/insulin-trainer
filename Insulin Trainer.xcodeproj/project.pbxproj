@@ -61,8 +61,8 @@
 		AD8456701A16BB550001C060 /* BSDatum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BSDatum.swift; path = ../BSDatum.swift; sourceTree = "<group>"; };
 		AD8456721A16C5100001C060 /* BSDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BSDatabase.swift; path = ../BSDatabase.swift; sourceTree = "<group>"; };
 		AD8DD04D1A1AD8210032CEF9 /* GraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
-		AD8DD04F1A1B11160032CEF9 /* GraphWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphWidget.swift; sourceTree = "<group>"; };
-		AD8DD0511A1B194B0032CEF9 /* GlobalUIFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalUIFunctions.swift; sourceTree = "<group>"; };
+		AD8DD04F1A1B11160032CEF9 /* GraphWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GraphWidget.swift; path = ../GraphWidget.swift; sourceTree = "<group>"; };
+		AD8DD0511A1B194B0032CEF9 /* GlobalUIFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GlobalUIFunctions.swift; path = ../GlobalUIFunctions.swift; sourceTree = "<group>"; };
 		ADE46BFF1A1580CB00E5843F /* AddSomethingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddSomethingViewController.swift; path = ../AddSomethingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -87,8 +87,6 @@
 		AD0A13011A143DC4001CDA4B = {
 			isa = PBXGroup;
 			children = (
-				AD8DD0511A1B194B0032CEF9 /* GlobalUIFunctions.swift */,
-				AD8DD04F1A1B11160032CEF9 /* GraphWidget.swift */,
 				AD0A130C1A143DC4001CDA4B /* Insulin Trainer */,
 				AD0A13221A143DC4001CDA4B /* Insulin TrainerTests */,
 				AD0A130B1A143DC4001CDA4B /* Products */,
@@ -107,6 +105,8 @@
 		AD0A130C1A143DC4001CDA4B /* Insulin Trainer */ = {
 			isa = PBXGroup;
 			children = (
+				AD8DD0511A1B194B0032CEF9 /* GlobalUIFunctions.swift */,
+				AD8DD04F1A1B11160032CEF9 /* GraphWidget.swift */,
 				AD8456721A16C5100001C060 /* BSDatabase.swift */,
 				AD8456701A16BB550001C060 /* BSDatum.swift */,
 				ADE46BFF1A1580CB00E5843F /* AddSomethingViewController.swift */,
