@@ -25,13 +25,11 @@ class HomeViewController: UIViewController {
         self.navigationItem.title = "Home"
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "add")
         
-        self.addMenu = AddMenu()
-        self.addMenu.layer.zPosition = 10
-        self.view.addSubview(self.addMenu)
-        
         self.graph = GraphWidget(frame: CGRectMake(screenBounds.size.width/2 - main_graph_width/2, 50, main_graph_width, main_graph_height))
-        
         self.view.addSubview(self.graph)
+        
+        self.addMenu = AddMenu()
+        self.view.addSubview(self.addMenu)
     }
     
     

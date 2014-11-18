@@ -35,22 +35,20 @@ class AddMenu: UIView {
         self.customizeButton(bloodSugarButton, yPos: buttonY, title: "Blood Sugar Reading")
         buttonY += bloodSugarButton.frame.size.height + AddMenu.buttonYPadding
         bloodSugarButton.addTarget(self, action: "bloodSugarButtonPressed", forControlEvents: UIControlEvents.TouchUpInside)
-        GlobalUIFunctions.instance().customizeButton(bloodSugarButton)
         
         let insulinButton: UIButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton
         self.customizeButton(insulinButton, yPos: buttonY, title: "Insulin Dose")
         buttonY += insulinButton.frame.size.height + AddMenu.buttonYPadding
         insulinButton.addTarget(self, action: "insulinButtonPressed", forControlEvents: UIControlEvents.TouchUpInside)
-        GlobalUIFunctions.instance().customizeButton(insulinButton)
         
         let foodButton: UIButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton
         self.customizeButton(foodButton, yPos: buttonY, title: "Food Consumption")
         foodButton.addTarget(self, action: "foodButtonPressed", forControlEvents: UIControlEvents.TouchUpInside)
-        GlobalUIFunctions.instance().customizeButton(foodButton)
         
         self.addSubview(bloodSugarButton)
         self.addSubview(insulinButton)
         self.addSubview(foodButton)
+        insulinButton.bringSubviewToFront(insulinButton)
     }
     
     func bloodSugarButtonPressed() {

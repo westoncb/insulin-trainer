@@ -41,9 +41,9 @@ class GraphWidget: UIView {
         
         self.dateTests()
         var data = BSDatabase.instance.data
-        var dataToRender = BSDatabase.instance.dataForDate(data[0].time)
-        if let dataToRender2 = dataToRender {
-            self.graphView.renderWithData(dataToRender2, timeUnitSetting: TimeUnit.Day)
+        var dataToRenderOpt = BSDatabase.instance.dataForDate(data[0].time)
+        if let dataToRender = dataToRenderOpt {
+            self.graphView.renderWithData(dataToRender)
         }
     }
     
